@@ -1,5 +1,3 @@
-# RokidFaceLib文档说明
-
 **Version：facelib.aar**
 
 <h2 id="1">1.FACE SDK集成</h2>
