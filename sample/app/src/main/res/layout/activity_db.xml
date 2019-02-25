@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/db_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_load"/>
+        <Button
+            android:id="@+id/db_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_add"/>
+
+        <Button
+            android:id="@+id/db_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_save"/>
+
+    </LinearLayout>
+</FrameLayout>

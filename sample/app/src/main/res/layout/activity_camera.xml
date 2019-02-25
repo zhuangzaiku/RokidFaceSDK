@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rokid.camerakit.cameralibrary.view.DefultCameraView
+        android:id="@+id/cameraview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.rokid.facelib.view.InjectFaceView
+            android:id="@+id/injectView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.rokid.camerakit.cameralibrary.view.DefultCameraView>
+
+    <FrameLayout
+        android:id="@+id/focus_rect_layout"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="80dp">
+        <View
+            android:id="@+id/focus_rect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_rect_blue_bg" />
+        <ImageView
+            android:id="@+id/faceImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/take_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="take_pic" />
+
+        <Button
+            android:id="@+id/face_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="face_toggle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/sel_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sel_photo"
+            android:visibility="gone"/>
+    </LinearLayout>
+</FrameLayout>

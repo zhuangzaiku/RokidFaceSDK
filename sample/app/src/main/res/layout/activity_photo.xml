@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/db_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_preview"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/db_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_add"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/db_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_remove"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/db_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_query"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/db_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_list"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/db_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="db_del"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/pic_preview"
+                    android:layout_width="640px"
+                    android:layout_height="720px"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitCenter" />
+
+                <EditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="input name"
+                    android:text=""
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/commit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="commit" />
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.rokid.rokidfacesample"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'com.rokid:facelib:1.2.0.15-SNAPSHOT'
+//    implementation 'com.rokid.citrus:citrusfacesdk:1.0.0.9-SNAPSHOT'
+//    implementation 'com.rokid:cameralibrary:1.0.0.1-SNAPSHOT'
+    implementation 'com.alibaba:fastjson:1.2.47'
+    implementation(name:'facelib-1.2.0.15', ext:'aar')
+    implementation(name:'cameralibrary-1.0.0.1', ext:'aar')
+    implementation(name:'citrusfacesdk-1.0.0.9', ext:'aar')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+}
