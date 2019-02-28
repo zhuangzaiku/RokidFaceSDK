@@ -80,13 +80,13 @@ input.setFormat(int type); // 设置图片数据格式
 BitmapInput bpInput = new BitmapInput(Bitmap bp);  //支持输入bitmap
 NV21Input nvInput = new NV21Input(byte[] data, int w, int h); // 支持输入nv21数据
 VideoInput videoInput = new VideoInput(byte[] data); // 支持输入相机预览数据
->
+```
 
 <h3 id="2.1">2.1 单帧图片检测：</h3>
 
 <h4 id="2.1.1">2.1.1 人脸检测创建：</h4>
 
-​```java
+```java
   IImageRokidFace imageFace = ImageRokidFace.create(context);
 ```
 
@@ -227,11 +227,10 @@ dbFace.contain(UUID) // 是否包含UUID的特征值;
 ```
 
 <h4 id="2.3.6">2.3.6 人脸数据库大小，遍历、删除</h4>
+
 ```java
  dbFace.dbSize() //数据库UUID数量
  dbFace.getUUID(index) //根据index获取UUID
  dbFace.delDb() // 删除数据库
  dbFace.getDbId() //获取数据库引擎id
 ```
-
---
