@@ -150,7 +150,8 @@ videoFace = VideoRokidFace.create(context);
  videoFace.dconfig(config);
 
  SFaceConf config = new SFaceConf();
- videoFace.sconfig(config.setRecog(true, dbId);
+ //setTimingRecog表示启用API内部的识别流程。
+ videoFace.sconfig(config.setRecog(true, dbId).setTimingRecog(true));
 ```
 
 <h4 id="2.2.3">2.2.3 人脸检测设置相机预览数据</h4>
