@@ -98,7 +98,8 @@ VideoInput videoInput = new VideoInput(byte[] data); // 支持输入相机预览
 <h4 id="2.1.2">2.1.2 人脸检测初始化：</h4>
 
 ```java
-imageFace.sconfig(new SFaceConf().setRecog(true, dbId); // 如果图片检测需要人脸识别，则sconfig
+ //setTimingRecog表示启用API内部的识别流程。
+ videoFace.sconfig(config.setRecog(true, dbId).setTimingRecog(true));// 如果图片检测需要人脸识别，则sconfig
 ```
 
 
