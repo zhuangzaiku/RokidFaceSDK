@@ -32,35 +32,15 @@
             android:scaleType="fitXY"/>
     </FrameLayout>
 
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/face_toggle"
+        android:text="face_toggle" />
 
-        <Button
-            android:id="@+id/take_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="take_pic" />
-
-        <Button
-            android:id="@+id/face_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="face_toggle" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/sel_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sel_photo"
-            android:visibility="gone"/>
-    </LinearLayout>
+        android:id="@+id/tv_text"/>
 </FrameLayout>

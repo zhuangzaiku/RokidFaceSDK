@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/camera_auto_recog"
+            android:id="@+id/db_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人脸相机自动识别" />
+            android:padding="10dp"
+            android:text="db_create" />
 
         <Button
-            android:id="@+id/camera_recog"
+            android:id="@+id/db_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人脸相机识别" />
+            android:padding="10dp"
+            android:text="db_add" />
 
         <Button
-            android:id="@+id/img_face"
+            android:id="@+id/db_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人脸图片识别" />
+            android:padding="10dp"
+            android:text="db_remove" />
 
         <Button
-            android:id="@+id/db_op"
+            android:id="@+id/db_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人脸数据库操作" />
+            android:padding="10dp"
+            android:text="db_save" />
+
+        <Button
+            android:id="@+id/db_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="db_clear" />
     </LinearLayout>
-
 </FrameLayout>
