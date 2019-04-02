@@ -1,24 +1,26 @@
-**Version：facelib 2.2.0.1**
+**Version：facelib 2.1.0.1**
 
 ***
 ## 一. FaceSDK介绍
 ---
 ### 1.1 概述
-RokidFaceSDK提供基础的人脸检测+人脸跟踪+人脸识别，能够高效进行多人识别。本SDK封装底层算法接口，提供：
-1.图片检测+图片识别
-2.相机预览数据人脸检测，人脸跟踪，人脸识别。
-3.人脸数据库增删改查的接口
-4.能够获取人脸角度以及人脸质量等信息
-5.单帧图片人脸检测，支持bitmap、NV21格式数据人脸检测
+RokidFaceSDK提供基础的人脸检测+人脸跟踪+人脸识别，能够高效进行多人识别。本SDK封装底层算法接口，提供：  
+1.图片检测+图片识别   
+2.相机预览数据人脸检测，人脸跟踪，人脸识别。   
+3.人脸数据库增删改查的接口   
+4.能够获取人脸角度以及人脸质量等信息   
+5.单帧图片人脸检测，支持bitmap、NV21格式数据人脸检测   
 ## 二. 集成说明
 ---
 ### 2.1 添加三方依赖库
-在project的build.gradle中添加jcenter依赖
+在project的build.gradle中添加
 ```java
 allprojects {
     repositories {
         google()
         jcenter()
+        maven {url "http://mvnrepo.rokid-inc.com/nexus/content/repositories/snapshots/"}
+        maven {url "http://mvnrepo.rokid-inc.com/nexus/content/repositories/releases/"}
     }
 }
 ```
@@ -26,7 +28,7 @@ allprojects {
 在app的build.gradle中添加依赖
 ```java
 dependencies {
-    implementation 'com.rokid.glass:facelib:2.2.0.3'
+    implementation 'com.rokid:facelib:2.1.0.1-SNAPSHOT'
 }
 ```
 
@@ -52,8 +54,8 @@ dependencies {
 ---
 ### 3.1 人脸数据库操作
 #### 3.1.1 人脸数据库初始化
-人脸数据库初始化需要下面几步操作:
-**1. 创建人脸数据库Helper**
+人脸数据库初始化需要下面几步操作:  
+**1. 创建人脸数据库Helper**  
 说明：数据库操作的实体类
 
 ```java
@@ -64,7 +66,7 @@ FaceDbHelper(Context context)
 ------|---------
 context | 上下文context
 
-**返回:**
+**返回:**  
 `FaceDbHelper`
 
 **2. 设置人脸数据库的模式(非必须)**
@@ -103,7 +105,7 @@ UserInfo add(Bitmap bm, UserInfo info)
 bm | 传入的图片
 info | 人脸信息 [UserInfo](#351-userinfo)
 
-**返回:**
+**返回:**  
 用户信息  [UserInfo](#351-userinfo)
 
 示例代码：
@@ -154,7 +156,7 @@ List<UserInfo> queryBySize(int index,int count)
 index | 开始查询的位置
 count | 查询的数据size
 
-**返回:**
+**返回:**  
 
 类型|含义
 ------|---------
@@ -165,9 +167,9 @@ count | 查询的数据size
 dbCreator.queryBySize(0,10);
 ```
 #### 3.1.6 人脸数据库的保存到本地
-说明:
-* 数据库文件会储存在/sdcard/facesdk/ 目录下；
-* 人脸数据库和算法数据库分别对应文件"user.db"和"SearchEngine.bin"；
+说明: 
+* 数据库文件会储存在/sdcard/facesdk/ 目录下； 
+* 人脸数据库和算法数据库分别对应文件"user.db"和"SearchEngine.bin"；  
 * 使用人脸识别功能时需将这两个文件拷贝至需要的设备中;
 
 ``` java
@@ -195,14 +197,13 @@ DFaceConf setSize(int width,int height)
 width | 输入数据的宽
 height | 输入数据的高
 
-**返回:**
+**返回:**  
 
 类型|含义
 ------|---------
 DFaceConf| 动态配置类
 
 **2. 设置算法识别区域**
-
 ``` java
 DFaceConf setRoi(Rect rect)
 ```
@@ -210,7 +211,7 @@ DFaceConf setRoi(Rect rect)
 ------|---------
 rect | 输入算法检测区域
 
-**返回:**
+**返回:**  
 
 类型|含义
 ------|---------
@@ -224,99 +225,36 @@ DFaceConf setDataType(int dataType)
 ------|---------
 dataType | 输入数据的格式:<br/>DataFormat.DATA_BGR  bgr图片数据；<br/>DataFormat.DATA_BITMAP bitmap数据；<br/>DataFormat.DATA_YUV420 camera nv21数据
 
-**返回:**
+**返回:**  
 
 类型|含义
 ------|---------
 DFaceConf| 动态配置类
 
 **4. 设置识别相关配置**
-
 ``` java
 SFaceConf setRecog（boolean recog,String dbName）
 ```
 参数|含义
 ------|---------
 recog | 是否打开人脸识别开关
-dbName| 人脸数据库文件夹路径
+dbName| 人脸数据库路径
 
-**返回:**
-
-类型|含义
-------|---------
-SFaceConf| 静态配置类
-
-**5. 设置自动识别**
-
-``` java
-SFaceConf setAutoRecog（boolean autoRecog）
-```
-参数|含义
-------|---------
-autoRecog | 是否打开自动识别开关
-
-**返回:**
+**返回:**  
 
 类型|含义
 ------|---------
 SFaceConf| 静态配置类
 
-**6. 设置识别阈值**
-
-``` java
-SFaceConf setTargetScore(float targetScore);
-```
-参数|含义
-------|---------
-targetScore | 阈值(取值0-100)，小于阈值的识别结果将被过滤
-
-**返回:**
-
-类型|含义
-------|---------
-SFaceConf| 静态配置类
-
-**7. 设置识别超时**
-
-``` java
-SFaceConf setOutTime(long ms);
-```
-参数|含义
-------|---------
-ms | 超时时间，超过该时间还没有超过阈值的识别结果，则返回超时
-
-**返回:**
-
-类型|含义
-------|---------
-SFaceConf| 静态配置类
-
-**8. 设置识别间隔**
-
-``` java
-SFaceConf setRecogInterval(long ms);
-```
-参数|含义
-------|---------
-ms | 识别间隔，同一张人脸两次识别的时间间隔
-
-**返回:**
-
-类型|含义
-------|---------
-SFaceConf| 静态配置类
 示例代码：
 ```java
 DFaceConf conf = new DFaceConf();
 conf.setSize(width, height); // 设置数据宽高
 conf.setRoi(rect); // 设置检测roi区域
-conf.setDataType(type) // 设置数据格式 DataFormat
+conf.setDataType(type) // 设置数据格式 DataFormat 
 SFaceConf conf = new SFaceConf();
-conf.setRecog(true, dbPath); //设置路径
-conf.setAutoRecog(true);//设置自动识别
-conf.setTargetScore(80);//设置识别阈值
-conf.setsetOutTime(2000);//设置超时时间
-conf.setRecogInterval(5000);//设置识别间隔
+conf.setRecog(true, dbPath); 
+
 ```
 
 ### 3.3 相机/video人脸检测
@@ -330,7 +268,7 @@ VideoRokidFace create(Context context,DFaceConf dFaceConf)
 context | 上下文context
 dFaceConf| 动态配置类
 
-**返回:**
+**返回:**  
 `VideoRokidFace` video人脸识别接口
 
 **2. 静态参数配置**
@@ -364,7 +302,7 @@ videoFace.setData(new VideoInput(bytes));
 ``` java
 byte[] getBytes()
 ```
-**返回:**
+**返回:**  
 相机传入的数据
 
 示例代码：
@@ -385,7 +323,7 @@ rokidFaceCallback | 人脸检测+人脸跟踪+人脸识别的统一回调接口
 videoFace.startTrack(new RokidFaceCallback() {
     @Override
     public void onFaceCallback(FaceModel model) {
-
+    
     }
 });
 ```
@@ -404,7 +342,7 @@ IImageRokidFace imageFace = ImageRokidFace.create(context);
 ------|---------
 context | context上下文
 
-**返回:**
+**返回:**  
 `IImageRokidFace` 图片识别的接口
 
 示例代码：
@@ -421,13 +359,13 @@ IImageRokidFace sconfig(SFaceConf sFaceConf)
 ------|---------
 sFaceConf | 静态配置
 
-**返回:**
+**返回:**  
 `IImageRokidFace` 图片识别的接口
 
 示例代码：
 ```java
 // 如果图片检测需要人脸识别，则sconfig
-imageFace.sconfig(new SFaceConf().setRecog(true, dbPath));
+imageFace.sconfig(new SFaceConf().setRecog(true, dbPath)); 
 ```
 #### 3.4.3 人脸检测接口
 说明：图片识别的功能实现接口
@@ -474,14 +412,12 @@ FaceModel {
 
 FaceDO {
     public RectF faceRectF; // 人脸rect
-    public int trackId;  // trackId 人脸trackId，tracking中id不变
-    public boolean goodQuality;//人脸质量是否合格
-    public boolean goodPose;//人脸角度是否合格
-    public boolean goodSharpness;//人脸清晰度是否合格
+    public long trackId;  // trackId 人脸trackId，tracking中id不变
+    public byte[] UUID;   // 人脸UUID
+    public float quality; //人脸质量
     public UserInfo userInfo; //人脸信息
     public float[] pose; //人脸角度
     public float userInfoScore; //人脸识别的分数
     public float sharpness; //人脸清晰度
-    public boolean recogOutTime;//人脸是否超时
 }
 ```
