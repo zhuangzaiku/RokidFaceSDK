@@ -33,11 +33,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.rokid.glass:facelib:2.2.0.2'
 //    implementation 'com.rokid.citrus:citrusfacesdk:1.0.0.9-SNAPSHOT'
-    implementation 'com.rokid:cameralibrary:1.0.0.1-SNAPSHOT'
+    implementation 'com.rokid.glass:cameralib:1.0.0'
+//    implementation 'com.rokid:cameralibrary:1.0.0.1-SNAPSHOT'
     implementation 'com.alibaba:fastjson:1.2.47'
-//    implementation(name:'facelib-1.2.0.15', ext:'aar')
-//    implementation(name:'cameralibrary-1.0.0.1', ext:'aar')
-//    implementation(name:'citrusfacesdk-1.0.0.9', ext:'aar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
 }

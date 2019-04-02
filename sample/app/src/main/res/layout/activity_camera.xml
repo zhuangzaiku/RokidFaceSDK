@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.rokid.camerakit.cameralibrary.view.DefultCameraView
+    <com.rokid.camerakit.cameralibrary.view.DefaultCameraView
         android:id="@+id/cameraview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:preivewWidth="1280"
+        app:preivewHeight="720">
 
         <com.rokid.facelib.view.InjectFaceView
             android:id="@+id/injectView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.rokid.camerakit.cameralibrary.view.DefultCameraView>
+    </com.rokid.camerakit.cameralibrary.view.DefaultCameraView>
 
     <FrameLayout
         android:id="@+id/focus_rect_layout"

@@ -11,7 +11,7 @@ import android.transition.Explode;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rokid.camerakit.cameralibrary.view.DefultCameraView;
+import com.rokid.camerakit.cameralibrary.view.DefaultCameraView;
 import com.rokid.facelib.VideoRokidFace;
 import com.rokid.facelib.api.IVideoRokidFace;
 import com.rokid.facelib.conf.SFaceConf;
@@ -44,7 +44,7 @@ public class CameraRecogActivity extends Activity {
     private int PREVIEW_WIDTH = WIDTH_720P;
     private int PREVIEW_HEIGHT = HEIGHT_720P;
 
-    DefultCameraView cameraView;
+    DefaultCameraView cameraView;
 
     IVideoRokidFace videoFace;
     InjectFaceView injectFaceView;
