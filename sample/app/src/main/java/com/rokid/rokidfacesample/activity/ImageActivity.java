@@ -29,7 +29,7 @@ public class ImageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.img_activity);
         imageFace = ImageRokidFace.create(getBaseContext());
-        imageFace.sconfig(new SFaceConf().setRecog(true, "/sdcard/facesdk/user.db").setAutoRecog(true));
+        imageFace.sconfig(new SFaceConf().setRecog(true, "/sdcard/facesdk/").setAutoRecog(true));
         btn_sel = findViewById(R.id.btn_sel);
         tv_text = findViewById(R.id.tv_text);
         btn_sel.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +67,6 @@ public class ImageActivity extends Activity {
                 }
                 tv_text.setText(sb.toString());
             });
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

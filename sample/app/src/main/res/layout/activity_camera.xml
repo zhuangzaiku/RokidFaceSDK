@@ -40,6 +40,14 @@
         android:id="@+id/face_toggle"
         android:text="face_toggle" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:id="@+id/reload"
+        android:text="reload" />
+
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_text"/>

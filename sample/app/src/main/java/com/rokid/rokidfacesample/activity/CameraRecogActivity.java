@@ -24,7 +24,6 @@ import com.rokid.facelib.utils.FaceRectUtils;
 import com.rokid.facelib.view.InjectFaceView;
 import com.rokid.rokidfacesample.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -161,41 +160,41 @@ public class CameraRecogActivity extends Activity {
         videoFace.dconfig(new VideoDFaceConf().setSize(1280, 720).setRoi(roiRect));//.setRoi(roiRect));
 
         videoFace.startTrack(model -> {
-            faceModel = model;
-
-            List<Rect> list = new ArrayList<>();
-            List<String> textList = new ArrayList<>();
-            for (FaceDO face : model.getFaceList()) {
-                Rect rect;
-                if (cameraView.isMirror()) {
-                    rect = face.toMirroRect(cameraView.getWidth(), cameraView.getHeight());
-                } else {
-                    rect = face.toRect(cameraView.getWidth(), cameraView.getHeight());
-                }
-                list.add(rect);
-                StringBuilder sb = new StringBuilder();
-                if(face.pose!=null) {
-                    sb.append("pose:");
-                    for (float f : face.pose) {
-                        sb.append(f).append(",");
-                    }
-                    sb.append("\n");
-                }
-
-                if(face.sharpness!=0){
-                    sb.append("sharpness:"+face.sharpness+"\n");
-                }
-                faceInfo = sb.toString();
-
-                textList.add("unkonw");
-                mH.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        tv_text.setText(faceInfo);
-                    }
-                });
-            }
-            injectFaceView.drawRects(list, textList);
+//            faceModel = model;
+//
+//            List<Rect> list = new ArrayList<>();
+//            List<String> textList = new ArrayList<>();
+//            for (FaceDO face : model.getFaceList()) {
+//                Rect rect;
+//                if (cameraView.isMirror()) {
+//                    rect = face.toMirroRect(cameraView.getWidth(), cameraView.getHeight());
+//                } else {
+//                    rect = face.toRect(cameraView.getWidth(), cameraView.getHeight());
+//                }
+//                list.add(rect);
+//                StringBuilder sb = new StringBuilder();
+//                if(face.pose!=null) {
+//                    sb.append("pose:");
+//                    for (float f : face.pose) {
+//                        sb.append(f).append(",");
+//                    }
+//                    sb.append("\n");
+//                }
+//
+//                if(face.sharpness!=0){
+//                    sb.append("sharpness:"+face.sharpness+"\n");
+//                }
+//                faceInfo = sb.toString();
+//
+//                textList.add("unkonw");
+//                mH.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        tv_text.setText(faceInfo);
+//                    }
+//                });
+//            }
+//            injectFaceView.drawRects(list, textList,null);
         });
 
         initCam();

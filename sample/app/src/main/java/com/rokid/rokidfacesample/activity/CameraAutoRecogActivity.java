@@ -8,27 +8,23 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.transition.Explode;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rokid.camerakit.cameralibrary.view.DefultCameraView;
-import com.rokid.facelib.ImageRokidFace;
 import com.rokid.facelib.VideoRokidFace;
-import com.rokid.facelib.api.IImageRokidFace;
 import com.rokid.facelib.api.IVideoRokidFace;
-import com.rokid.facelib.conf.ImageDFaceConf;
 import com.rokid.facelib.conf.SFaceConf;
 import com.rokid.facelib.conf.VideoDFaceConf;
 import com.rokid.facelib.input.VideoInput;
-import com.rokid.facelib.model.FaceDO;
 import com.rokid.facelib.model.FaceSize;
 import com.rokid.facelib.utils.FaceLog;
 import com.rokid.facelib.utils.FaceRectUtils;
 import com.rokid.facelib.view.InjectFaceView;
 import com.rokid.rokidfacesample.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 相机人脸跟踪+检测+识别
@@ -50,7 +46,6 @@ public class CameraAutoRecogActivity extends Activity {
     DefultCameraView cameraView;
 
     IVideoRokidFace videoFace;
-    IImageRokidFace imageFace;
     InjectFaceView injectFaceView;
 
     private Rect roiRect;
@@ -60,6 +55,8 @@ public class CameraAutoRecogActivity extends Activity {
     ImageView faceImage;
     String faceInfo;
     TextView tv_text;
+    Button btn_reload;
+    boolean stop;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,23 +95,26 @@ public class CameraAutoRecogActivity extends Activity {
 
         cameraView = findViewById(R.id.cameraview);
         tv_text = findViewById(R.id.tv_text);
+        btn_reload = findViewById(R.id.reload);
         injectFaceView = findViewById(R.id.injectView);
         findViewById(R.id.face_toggle).setOnClickListener(view -> {
             cameraView.setFace();
             roiRect = FaceRectUtils.toMirror(roiRect, cameraView.getWidth());
+        });
+        btn_reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stop = true;
+                videoFace.destroy();
+                faceTrackRecog();
+                stop = false;
+            }
         });
     }
 
     private void initCase() {
         faceTrackRecog();
         mH.sendEmptyMessageDelayed(1, 2000);
-    }
-
-    private void initImageFace() {
-        if (imageFace == null) {
-            imageFace = ImageRokidFace.create(this);
-            imageFace.dconfig(new ImageDFaceConf());
-        }
     }
 
     private void viewPost(Runnable runnable) {
@@ -133,47 +133,14 @@ public class CameraAutoRecogActivity extends Activity {
         }
     };
     private void faceTrackRecog() {
-        videoFace = VideoRokidFace.create(getBaseContext(),new VideoDFaceConf().setSize(1280, 720).setRoi(roiRect));
-        videoFace.sconfig(new SFaceConf().setRecog(true, "/sdcard/facesdk/user.db").setAutoRecog(true));
+        videoFace = VideoRokidFace.create(getBaseContext(),new VideoDFaceConf().setSize(1280, 720));
+        videoFace.sconfig(new SFaceConf().setRecog(true, "/sdcard/facesdk/").setAutoRecog(true));
 
         videoFace.startTrack(model -> {
-            List<Rect> list = new ArrayList<>();
-            List<String> textList = new ArrayList<>();
-            for (FaceDO face : model.getFaceList()) {
-                Rect rect;
-                if (cameraView.isMirror()) {
-                    rect = face.toMirroRect(cameraView.getWidth(), cameraView.getHeight());
-                } else {
-                    rect = face.toRect(cameraView.getWidth(), cameraView.getHeight());
-                }
-                list.add(rect);
-                StringBuilder sb = new StringBuilder();
-                if(face.pose!=null) {
-                    sb.append("pose:");
-                    for (float f : face.pose) {
-                        sb.append(f).append(",");
-                    }
-                    sb.append("\n");
-                }
-                if(face.userInfo!=null){
-                    sb.append("name:"+face.userInfo.name+"\n");
-                    textList.add(face.userInfo.name);
-                }else{
-                    textList.add("unkown");
-                }
-
-                if(face.sharpness!=0){
-                    sb.append("sharpness:"+face.sharpness+"\n");
-                }
-                faceInfo = sb.toString();
-                mH.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        tv_text.setText(faceInfo);
-                    }
-                });
+            if(model!=null){
+                Log.i(TAG,"model:"+model.toString());
             }
-            injectFaceView.drawRects(list, textList);
+            injectFaceView.drawRects(model.getFaceList(),cameraView.getWidth(),cameraView.getHeight(),false);
         });
 
         initCam();
@@ -183,7 +150,7 @@ public class CameraAutoRecogActivity extends Activity {
     private void initCam() {
 
         cameraView.addPreviewCallBack((bytes, camera) -> {
-            if (videoFace != null) {
+            if (videoFace != null&&!stop) {
                 videoFace.setData(new VideoInput(bytes));
             }
         });
@@ -205,9 +172,6 @@ public class CameraAutoRecogActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (imageFace != null) {
-            imageFace.destroy();
-        }
         if (videoFace != null) {
             videoFace.destroy();
         }

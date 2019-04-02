@@ -21,8 +21,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +35,8 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
         </activity>
-        <activity android:name=".activity.DbControlActivity" />
+        <activity android:name=".activity.DbControlActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.ImageActivity" />
         <activity android:name=".activity.CameraRecogActivity"
             android:configChanges="orientation|screenSize"

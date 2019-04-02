@@ -16,6 +16,8 @@ import com.rokid.facelib.db.UserInfo;
 import com.rokid.facelib.face.FaceDbHelper;
 import com.rokid.rokidfacesample.R;
 
+import java.io.File;
+
 public class DbControlActivity extends Activity {
     private static final String TAG = "DbControlActivity";
     private Button db_add, db_remove, db_save, db_clear, db_create;
@@ -66,14 +68,26 @@ public class DbControlActivity extends Activity {
                 mH.post(new Runnable() {
                     @Override
                     public void run() {
-                        UserInfo info = new UserInfo("安慰", "3522031989");
-                        Bitmap bm = BitmapFactory.decodeFile("sdcard/test.jpg");
-                        uuid = dbCreator.add(bm, info).uuid;
-                        Log.i(TAG, "uuid:" + uuid);
-                        UserInfo info1 = new UserInfo("迟丽颖", "3522031989");
-                        Bitmap bm1 = BitmapFactory.decodeFile("sdcard/test_2.jpg");
-                        String uuid1 = dbCreator.add(bm1, info1).uuid;
-                        Log.i(TAG, "uuid:" + uuid1);
+                        int i=0;
+                        File dir = new File("/sdcard/input2");
+                        for(File file :dir.listFiles()){
+                            Bitmap bm = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            UserInfo info = new UserInfo(file.getName(),"11111111");
+                            if(bm==null){
+                                continue;
+                            }
+                            dbCreator.add(bm, info);
+                            Log.i(TAG,"add"+(i++));
+                        }
+
+//                        UserInfo info = new UserInfo("安慰", "3522031989");
+//                        Bitmap bm = BitmapFactory.decodeFile("sdcard/test.jpg");
+//                        uuid = dbCreator.add(bm, info).uuid;
+//                        Log.i(TAG, "uuid:" + uuid);
+//                        UserInfo info1 = new UserInfo("迟丽颖", "3522031989");
+//                        Bitmap bm1 = BitmapFactory.decodeFile("sdcard/test_2.jpg");
+//                        String uuid1 = dbCreator.add(bm1, info1).uuid;
+//                        Log.i(TAG, "uuid:" + uuid1);
                     }
                 });
             }
