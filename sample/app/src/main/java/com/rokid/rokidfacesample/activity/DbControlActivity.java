@@ -55,7 +55,7 @@ public class DbControlActivity extends Activity {
                     public void run() {
                         dbCreator = new FaceDbHelper(getApplicationContext());
                         dbCreator.setModel(FaceDbHelper.MODEL_DB);
-                        dbCreator.clearDb();
+//                        dbCreator.clearDb();
                         dbCreator.configDb("user.db");
                         Toast.makeText(DbControlActivity.this, "dbCreate", Toast.LENGTH_SHORT).show();
                     }
@@ -79,6 +79,11 @@ public class DbControlActivity extends Activity {
                             dbCreator.add(bm, info);
                             Log.i(TAG,"add"+(i++));
                         }
+
+//                        File file = new File("/sdcard/鲍国春.png");
+//                        Bitmap bm = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                        UserInfo info = new UserInfo(file.getName(),"11111111");
+//                        dbCreator.add(bm, info);
 
 //                        UserInfo info = new UserInfo("安慰", "3522031989");
 //                        Bitmap bm = BitmapFactory.decodeFile("sdcard/test.jpg");
